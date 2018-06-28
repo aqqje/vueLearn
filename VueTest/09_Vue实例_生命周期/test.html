@@ -35,7 +35,6 @@
     data: {
       isShow: true
     },
-
     mounted () {
       // 执行异步任务
       this.intervalId = setInterval(() => {
@@ -47,7 +46,7 @@
     beforeDestroy() {
       console.log('beforeDestroy()')
       // 执行收尾的工作
-      clearInterval(this.intervalId)
+      clearInterval(this.intervalId)//  销毁计时器
     },
 
     methods: {
