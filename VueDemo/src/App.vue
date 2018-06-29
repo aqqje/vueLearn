@@ -1,46 +1,42 @@
+<!-- html -->
 <template>
-  <div>
-    <header class="site-header jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>请发表对React的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-      <Add :addComent="addComent"/>
-      <List :coments="coments"/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <TodoHeader/>
+      <TodoList :todos="todos"/>
+      <TodoFooter/>
     </div>
   </div>
 </template>
-
+<!-- js -->
 <script>
-  import List from './components/List'
-  import Add from './components/Add'
+  import TodoHeader from './components/todoHeader'
+  import TodoList from './components/todoList'
+  import TodoFooter from './components/todoFooter'
     export default {
-    methods:{
-      addComent(coment){
-        this.coments.unshift(coment)
-      }
-    },
     data(){
       return{
-        coments: [
-          {name: 'rose', coment: 'I'},
-          {name: 'allen', coment: 'like'},
-          {name: 'tom', coment: 'love'},
-          {name: 'cat', coment: 'aqqje'},
-          {name: 'jack', coment: 'liuli'},
-        ]
+        todos: [
+          {title: 'eat', complete: false},
+          {title: 'sleep', complete: false},
+          {title: 'play', complete: true},
+          {title: 'game', complete: false}
+          ]
       }
     },
-      components: {Add, List},
-        name: "App.vue"
+      components:{TodoHeader, TodoList, TodoFooter}
     }
 </script>
-
+<!-- css -->
 <style scoped>
-
+  /*app*/
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>
