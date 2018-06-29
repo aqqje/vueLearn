@@ -2,7 +2,7 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader/>
+      <TodoHeader :addTodo="addTodo"/>
       <TodoList :todos="todos"/>
       <TodoFooter/>
     </div>
@@ -24,7 +24,16 @@
           ]
       }
     },
-      components:{TodoHeader, TodoList, TodoFooter}
+      components:{
+        TodoHeader,
+        TodoList,
+        TodoFooter
+      },
+      methods:{
+        addTodo(todo){
+          this.todos.unshift(todo)
+        }
+      }
     }
 </script>
 <!-- css -->

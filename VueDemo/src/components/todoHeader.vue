@@ -1,12 +1,35 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认"/>
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="addItem" v-model="title"/>
   </div>
 </template>
 
 <script>
     export default {
-        name: "todoHeader"
+      props: {
+        addTodo: Function
+      },
+      data(){
+        return {
+          title: ''
+        }
+      },
+      methods:{
+        addItem(){
+          //1.检查合法性
+          const title = this.title.trim()
+          if(!title){
+            alert("请输入！")
+            return
+          }
+          //2.封装成 todo 对象
+          const todo = {title, complete: false }
+          //3.增加到 todos 数组
+          this.addTodo(todo)
+          //4.扫尾工作
+          this.title = ''
+        }
+      }
     }
 </script>
 
