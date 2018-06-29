@@ -4,42 +4,38 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <h1>请发表对Vue的评论</h1>
+            <h1>请发表对React的评论</h1>
           </div>
         </div>
       </div>
     </header>
     <div class="container">
-      <!-- 使用组件 -->
       <Add/>
-      <!--传入属性-->
       <List :coments="coments"/>
     </div>
   </div>
 </template>
 
 <script>
-  //引入组件
-  import Add from './components/Add.vue'
-  import List from './components/List.vue'
+  import List from './components/List'
+  import Add from './components/Add'
     export default {
     data(){
       return{
-        coments:[
-          {name: 'rose', coment: 'vue good'},
-          {name: 'jack', coment: 'vue aqqje'},
-          {name: 'alle', coment: 'vue so so'},
+        coments: [
+          {name: 'rose', coment: 'I'},
+          {name: 'allen', coment: 'like'},
+          {name: 'tom', coment: 'love'},
+          {name: 'cat', coment: 'aqqje'},
+          {name: 'jack', coment: 'liuli'},
         ]
       }
     },
-    name: "App.vue",
-    // 注册组件
-    components: {
-      Add,
-      List
-    }
-
+      components: {Add, List},
+        name: "App.vue"
     }
 </script>
+
 <style scoped>
+
 </style>

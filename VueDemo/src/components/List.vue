@@ -9,14 +9,11 @@
 </template>
 
 <script>
-  import Item from './Item.vue'
+  import Item from './Item'
     export default {
-      components: {
-        Item
-      },
-      template: '<Item/>',
+      components: {Item},
       props: ['coments'],
-        name: "List.vue"
+      name: "List.vue"
     }
 </script>
 

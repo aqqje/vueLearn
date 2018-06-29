@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <li class="list-group-item">
-      <div class="handle">
-        <a href="javascript:;">删除</a>
-      </div>
-      <p class="user"><span >{{coment.name}}</span><span>说:</span></p>
-      <p class="centence">{{coment.coment}}</p>
-    </li>
-  </div>
+  <li class="list-group-item">
+    <div class="handle">
+      <a href="javascript:;">删除</a>
+    </div>
+    <p class="user"><span >{{coment.name}}</span><span>说:</span></p>
+    <p class="centence">{{coment.coment}}</p>
+  </li>
 </template>
 
 <script>
