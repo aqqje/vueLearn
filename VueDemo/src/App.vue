@@ -4,7 +4,7 @@
     <div class="todo-wrap">
       <TodoHeader :addTodo="addTodo"/>
       <TodoList :todos="todos" :removetodo="removetodo"/>
-      <TodoFooter/>
+      <TodoFooter :todos="todos" :removeCompleteTodos="removeCompleteTodos" :selectAllTodos="selectAllTodos"/>
     </div>
   </div>
 </template>
@@ -35,6 +35,14 @@
         },
         removetodo(index){
           this.todos.splice(index, 1)
+        },
+        // 删除所有选中的
+        removeCompleteTodos(){
+          this.todos = this.todos.filter( todo => !todo.complete)
+        },
+        // 全选|全不选
+        selectAllTodos(isSelectAll){
+          this.todos.forEach(todo => todo.complete = isSelectAll)
         }
       }
     }
