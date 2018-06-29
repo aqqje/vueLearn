@@ -3,7 +3,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <TodoHeader :addTodo="addTodo"/>
-      <TodoList :todos="todos"/>
+      <TodoList :todos="todos" :removetodo="removetodo"/>
       <TodoFooter/>
     </div>
   </div>
@@ -32,12 +32,15 @@
       methods:{
         addTodo(todo){
           this.todos.unshift(todo)
+        },
+        removetodo(index){
+          this.todos.splice(index, 1)
         }
       }
     }
 </script>
 <!-- css -->
-<style scoped>
+<style>
   /*app*/
   .todo-container {
     width: 600px;

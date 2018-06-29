@@ -33,7 +33,7 @@
     }
 </script>
 
-<style scoped>
+<style>
   /*header*/
   .todo-header input {
     width: 560px;

@@ -16,7 +16,7 @@
     }
 </script>
 
-<style scoped>
+<style>
   /*footer*/
   .todo-footer {
     height: 40px;
