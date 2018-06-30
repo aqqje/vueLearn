@@ -8,6 +8,8 @@ import About from '../views/About'
 import Home from '../views/Home'
 import News from '../views/News'
 import Messages from '../views/Messages'
+import MessageDail from '../views/MessageDail'
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -28,14 +30,21 @@ export default new VueRouter({
         },
         {
           path: '/home/messages',
-          component: Messages
+          component: Messages,
+          children:[
+            {
+            path: '/home/messages/dail/:id',
+            component: MessageDail,
+            }
+          ]
+        },
+        {// 子路由默认显示
+          path: "",
+          redirect: '/home/news',
         }
       ]
     },
-    {// 子路由默认显示
-      path: "",
-      redirect: '/home/news',
-    },
+
     { // 主路由默认显示
       path: '/',
       redirect: '/about'
