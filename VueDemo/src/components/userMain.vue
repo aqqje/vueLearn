@@ -47,9 +47,15 @@
               imgSrc: item.avatar_url,
               name: item.login
             }))
-            //成功,更新状态（成功）
-            this.searchLoading = false
-            this.users = users
+            if(response.data.items.length > 0){
+              //成功,更新状态（成功）
+              this.searchLoading = false
+              this.users = users
+            }else{
+              this.searchLoading = false
+              this.errorMsg = '无该用户！'
+            }
+
           }).catch(error => {
             //失败,更新状态（失败）
             this.searchLoading = false
