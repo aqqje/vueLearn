@@ -9,7 +9,7 @@
     <div>
       <div class="col-xs-2 col-xs-offset-2">
         <div class="list-group">
-          <router-link class="list-group-item" to="/about">About</router-link>
+          <router-link  class="list-group-item" to="/about">About</router-link>
           <router-link class="list-group-item" to="/home">Home</router-link>
           <!--<a href="#/about" class="list-group-item router-link-exact-active activeClass">About</a>
           <a href="#/about" class="list-group-item">About</a>-->
