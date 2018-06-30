@@ -1,17 +1,14 @@
 <template>
-  <div class="container">
-    <UserSearch/>
-    <UserMain/>
-  </div>
+  <mt-button  @click.native="handleClick" type="primary" style="width: 100%">LOVES</mt-button>
 </template>
 
 <script>
-  import UserSearch from './components/userSearch'
-  import UserMain from './components/userMain'
+  import { Toast } from 'mint-ui';
     export default {
-      components:{
-        UserSearch,
-        UserMain
+      methods:{
+        handleClick(){
+          Toast('LIULI');
+        }
       }
     }
 </script>
