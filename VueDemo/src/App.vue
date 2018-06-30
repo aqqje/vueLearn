@@ -20,6 +20,7 @@
   import TodoList from './components/todoList'
   import TodoFooter from './components/todoFooter'
   import Pubsub from 'pubsub-js'
+  import StorageUtils from './utils/storageUtil'
     export default {
     data(){
       return{
@@ -29,7 +30,7 @@
           {title: 'play', complete: true},
           {title: 'game', complete: false}
           ]*/
-        todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
+        todos: StorageUtils.readTodos()
       }
     },computed:{
         completeSize(){
@@ -55,7 +56,7 @@
         deep: true,
         handler: function(value){
           // 将最新 todos 的值 JSON 数据保存到 localStorage 中
-          window.localStorage.setItem('todos_key', JSON.stringify(value))
+          StorageUtils.saveTodos()
         }
       }
       },
