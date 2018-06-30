@@ -7,7 +7,6 @@
 <script>
     export default {
       props: {
-        addTodo: Function
       },
       data(){
         return {
@@ -25,9 +24,9 @@
           //2.封装成 todo 对象
           const todo = {title, complete: false }
           //3.增加到 todos 数组
-          this.addTodo(todo)
+          this.$emit('addTodo',todo)// 使用 addTodo 使用
           //4.扫尾工作
-          this.title = ''
+          thistitle = ''
         }
       }
     }

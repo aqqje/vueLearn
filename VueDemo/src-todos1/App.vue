@@ -16,16 +16,16 @@
     export default {
     data(){
       return{
-        /*todos: [
+        todos: [
           {title: 'eat', complete: false},
           {title: 'sleep', complete: false},
           {title: 'play', complete: true},
           {title: 'game', complete: false}
-          ]*/
-        todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
+          ]
+        /*todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')*/
       }
     },
-      watch:{ // 深度监视
+   /*   watch:{ // 深度监视
       todos:{
         deep: true,
         handler: function(value){
@@ -33,7 +33,7 @@
           window.localStorage.setItem('todos_key', JSON.stringify(value ))
         }
       }
-      },
+      },*/
       components:{
         TodoHeader,
         TodoList,

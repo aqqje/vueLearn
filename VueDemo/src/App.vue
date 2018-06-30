@@ -2,7 +2,8 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader :addTodo="addTodo"/>
+      <!--<TodoHeader @addTodo="addTodo"/>&lt;!&ndash; 给 TodoHeader 对象绑定 addTodo 监听事件 &ndash;&gt;-->
+      <TodoHeader ref="todoHeader"/><!-- 初始化时绑定监听 -->
       <TodoList :todos="todos" :removetodo="removetodo"/>
       <TodoFooter :todos="todos" :removeCompleteTodos="removeCompleteTodos" :selectAllTodos="selectAllTodos"/>
     </div>
@@ -24,13 +25,15 @@
           ]*/
         todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
       }
-    },
+    },mounted(){
+      this.$refs.todoHeader.$on('addTodo', this.addTodo)
+      },
       watch:{ // 深度监视
       todos:{
         deep: true,
         handler: function(value){
           // 将最新 todos 的值 JSON 数据保存到 localStorage 中
-          window.localStorage.setItem('todos_key', JSON.stringify(value ))
+          window.localStorage.setItem('todos_key', JSON.stringify(value))
         }
       }
       },

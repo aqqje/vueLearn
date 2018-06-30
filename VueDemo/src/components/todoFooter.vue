@@ -20,7 +20,7 @@
 <script>
     export default {
       props:{
-        todos: Object,
+        todos: Array,
         removeCompleteTodos: Function,
         selectAllTodos: Function
 
