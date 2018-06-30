@@ -26,7 +26,7 @@
           //3.增加到 todos 数组
           this.$emit('addTodo',todo)// 使用 addTodo 使用
           //4.扫尾工作
-          thistitle = ''
+          this.title = ''
         }
       }
     }

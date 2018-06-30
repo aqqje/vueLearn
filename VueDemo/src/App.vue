@@ -30,7 +30,7 @@
           {title: 'play', complete: true},
           {title: 'game', complete: false}
           ]*/
-        todos: StorageUtils.readTodos()
+        todos: StorageUtils.readTodos()//JSON.parse(window.localStorage.getItem('todos_key') || '[]')
       }
     },computed:{
         completeSize(){
@@ -56,7 +56,7 @@
         deep: true,
         handler: function(value){
           // 将最新 todos 的值 JSON 数据保存到 localStorage 中
-          StorageUtils.saveTodos()
+          StorageUtils.saveTodos(value)//window.localStorage.setItem('todos_key', JSON.stringify(value ))
         }
       }
       },
