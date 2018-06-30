@@ -2,16 +2,20 @@
   <div class="todo-footer">
     <div v-show="todos.length">
       <label>
-        <input type="checkbox" v-model="isAllCheck"/>
+        <!--<input type="checkbox" v-model="isAllCheck"/>-->
+        <slot name="check"></slot>
       </label>
       <span>
-            <span>已完成{{completeSize}}</span> / 全部{{todos.length}}
+            <!--<span>已完成{{completeSize}}</span> / 全部{{todos.length}}-->
+            <slot name="select"></slot>
           </span>
-      <button class="btn btn-danger" v-show="completeSize" @click="removeCompleteTodos">清除已完成任务</button>
+      <!--<button class="btn btn-danger" v-show="completeSize" @click="removeCompleteTodos">清除已完成任务</button>-->
+      <slot name="completeRemove"></slot>
     </div>
     <div v-show="!todos.length">
       <span>
-            <span style="text-align: center;display: block">还没有添加任务哦,赶快去添加吧</span>
+            <!--<span style="text-align: center;display: block">还没有添加任务哦,赶快去添加吧</span>-->
+        <slot name="todoIsNull"></slot>
           </span>
     </div>
   </div>
@@ -21,23 +25,7 @@
     export default {
       props:{
         todos: Array,
-        removeCompleteTodos: Function,
-        selectAllTodos: Function
-
       },
-      computed:{
-        completeSize(){
-          return this.todos.reduce((preTotal, todo) => preTotal + (todo.complete?1:0), 0)
-        },
-        isAllCheck:{
-          get(){
-            return this.completeSize === this.todos.length && this.completeSize > 0
-          },
-          set(value){ // 当前 checkbox 的最新值
-            this.selectAllTodos(value)
-          }
-        }
-      }
     }
 </script>
 

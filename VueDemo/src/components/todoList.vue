@@ -1,6 +1,6 @@
 <template>
   <ul class="todo-main">
-    <item v-for="(todo, index) in todos" :key="index" :index="index" :todo="todo" :removetodo="removetodo"/>
+    <item v-for="(todo, index) in todos" :key="index" :index="index" :todo="todo"/>
   </ul>
 </template>
 
@@ -11,7 +11,6 @@
 
       props: {
         todos: Array,
-        removetodo: Function
       }
     }
 </script>

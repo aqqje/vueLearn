@@ -4,8 +4,13 @@
     <div class="todo-wrap">
       <!--<TodoHeader @addTodo="addTodo"/>&lt;!&ndash; 给 TodoHeader 对象绑定 addTodo 监听事件 &ndash;&gt;-->
       <TodoHeader ref="todoHeader"/><!-- 初始化时绑定监听 -->
-      <TodoList :todos="todos" :removetodo="removetodo"/>
-      <TodoFooter :todos="todos" :removeCompleteTodos="removeCompleteTodos" :selectAllTodos="selectAllTodos"/>
+      <TodoList :todos="todos"/>
+      <TodoFooter :todos="todos" :removeCompleteTodos="removeCompleteTodos" :selectAllTodos="selectAllTodos">
+        <input slot="check" type="checkbox" v-model="isAllCheck"/>
+        <span slot="select">已完成{{completeSize}} / 全部{{todos.length}}</span>
+        <button slot="completeRemove" class="btn btn-danger" v-show="completeSize" @click="removeCompleteTodos">清除已完成任务</button>
+        <span slot="todoIsNull" style="text-align: center;display: block">还没有添加任务哦,赶快去添加吧</span>
+      </TodoFooter>
     </div>
   </div>
 </template>
@@ -14,6 +19,7 @@
   import TodoHeader from './components/todoHeader'
   import TodoList from './components/todoList'
   import TodoFooter from './components/todoFooter'
+  import Pubsub from 'pubsub-js'
     export default {
     data(){
       return{
@@ -25,8 +31,24 @@
           ]*/
         todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
       }
-    },mounted(){
+    },computed:{
+        completeSize(){
+          return this.todos.reduce((preTotal, todo) => preTotal + (todo.complete?1:0), 0)
+        },
+        isAllCheck:{
+          get(){
+            return this.completeSize === this.todos.length && this.completeSize > 0
+          },
+          set(value){ // 当前 checkbox 的最新值
+            this.selectAllTodos(value)
+          }
+        }
+      },
+      mounted(){
       this.$refs.todoHeader.$on('addTodo', this.addTodo)
+        Pubsub.subscribe('removetodo', (msg, index) => {// 订阅消息 --- > 监听事件
+          this.removetodo(index)
+        })
       },
       watch:{ // 深度监视
       todos:{
