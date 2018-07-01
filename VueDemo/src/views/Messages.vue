@@ -3,7 +3,10 @@
     <ul>
       <li v-for="message in messages" :key="message.id">
         <router-link :to="`/home/messages/dail/${message.id}`">{{message.title}}</router-link>
+        <button @click="pushShow(message.id)">push查看</button>
+        <button @click="replaceShow(message.id)">replace查看</button>
       </li>
+      <button @click="$router.back()">回退</button>
     </ul>
     <hr>
     <router-view></router-view>
@@ -35,6 +38,14 @@
               ]
             this.messages = messages
           }, 1000)
+      },
+      methods: {
+        pushShow(id){
+          this.$router.push(`/home/messages/dail/${id}`)
+        },
+        replaceShow(id){
+          this.$router.replace(`/home/messages/dail/${id}`)
+        }
       }
     }
 </script>
