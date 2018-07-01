@@ -31,15 +31,7 @@
               {
                 id: 3,
                 title: 'message03'
-              },
-              {
-                id: 4,
-                title: 'message04'
-              },
-              {
-                id: 5,
-                title: 'message05'
-              },
+              }
               ]
             this.messages = messages
           }, 1000)
