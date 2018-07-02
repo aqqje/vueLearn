@@ -33,7 +33,7 @@
               content: 'Message03content......'},
           ]
           this.messagesDails = messagesDails
-          //const ID = this.msgID*1
+          const ID = this.msgID*1
           this.messageDail = messagesDails.find(detail => detail.id===ID)
         },1000)
       },
