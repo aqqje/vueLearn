@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>click {{$store.state.count}} times, count is {{evenOrOdd}}</p>
+    <p>click {{count}} times, count is {{evenOrOdd}}</p>
     <button @click="increamt">+</button>
     <button @click="decreamt">-</button>
     <button @click="increamtIfOdd">Increamt If Odd</button>
@@ -8,19 +8,18 @@
   </div>
 </template>
 <script>
+  import {mapState, mapGetters, mapActions} from 'vuex'
   export default {
-    data(){
-      return {
-        count: 0
-      }
-    },
     computed:{
-      evenOrOdd(){
+      ...mapState(['count']),
+      ...mapGetters(['evenOrOdd'])
+      /*evenOrOdd(){
         return this.$store.getters.evenOrOdd
-      }
+      }*/
     },
     methods: {
-      increamt(){
+      ...mapActions(['increamt', 'decreamt', 'increamtIfOdd', 'increamtAysnc'])
+     /*increamt(){
         this.$store.dispatch('increamt')
       },
       decreamt(){
@@ -31,7 +30,7 @@
       },
       increamtAysnc(){
         this.$store.dispatch('increamtAysnc')
-      }
+      }*/
     }
   }
 </script>
