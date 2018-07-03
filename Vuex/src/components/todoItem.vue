@@ -1,0 +1,79 @@
+<template>
+  <li @mouseenter="handleEnter(true)" @mouseleave="handleEnter(false)" :style="{background: bgColor}">
+    <label>
+      <input type="checkbox" v-model="todo.complete"/>
+      <span>{{todo.title}}</span>
+    </label>
+    <button class="btn btn-danger" v-show="isShow" @click="removeItem">删除</button>
+  </li>
+</template>
+
+<script>
+  import Pubsub from 'pubsub-js'
+    export default {
+      props:{
+        index: Number,
+        todo: Object,
+      },
+      data(){
+        return{
+          bgColor: 'white',
+          isShow: false
+        }
+      },
+      methods:{
+        handleEnter(isEnter){
+          if(isEnter){
+            this.bgColor = '#dddddd'
+            this.isShow = true
+          }else{
+            this.bgColor = 'white'
+            this.isShow = false
+          }
+        },
+        removeItem(){
+          this.$store.dispatch('removeItem',this.index)
+         /* const {todo, index, removetodo} = this
+          if(window.confirm('你确定删除【' + todo.title + '】吗')){
+            // removetodo(index)
+            Pubsub.publish('removetodo', index) //  发布消息 -- > 触发事件
+          }*/
+        }
+      }
+    }
+</script>
+<style>
+  li {
+    list-style: none;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 5px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  li label {
+    float: left;
+    cursor: pointer;
+  }
+
+  li label li input {
+    vertical-align: middle;
+    margin-right: 6px;
+    position: relative;
+    top: -1px;
+  }
+
+  li button {
+    float: right;
+    display: none;
+    margin-top: 3px;
+  }
+
+  li:before {
+    content: initial;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+</style>
