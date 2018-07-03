@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>click {{count}} times, count is {{evenOrOdd}}</p>
-    <button @click="add">+</button>
-    <button @click="dev">-</button>
+    <p>click {{$store.state.count}} times, count is {{evenOrOdd}}</p>
+    <button @click="increamt">+</button>
+    <button @click="decreamt">-</button>
     <button @click="increamtIfOdd">Increamt If Odd</button>
     <button @click="increamtAysnc">Increamt aysnc</button>
   </div>
@@ -16,31 +16,22 @@
     },
     computed:{
       evenOrOdd(){
-        return this.count%2 === 0 ? '偶数 ': '奇数'
+        return this.$store.getters.evenOrOdd
       }
     },
     methods: {
-      add(){
-        const count = this.count
-        this.count = count + 1
+      increamt(){
+        this.$store.dispatch('increamt')
       },
-      dev(){
-        const count = this.count
-        this.count = count - 1
+      decreamt(){
+        this.$store.dispatch('decreamt')
       },
       increamtIfOdd(){
-        const count = this.count
-
-        if(count % 2 === 1){
-          this.count = count + 1
-        }
+       this.$store.dispatch('increamtIfOdd')
       },
       increamtAysnc(){
-        setTimeout(() => {
-          const count = this.count
-          this.count = count + 1
-        },1000)
-      },
+        this.$store.dispatch('increamtAysnc')
+      }
     }
   }
 </script>
